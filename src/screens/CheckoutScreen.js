@@ -25,7 +25,6 @@ export default function CheckoutScreen({ navigation }) {
 
   const handleCheckout = () => {
     if (validateForm()) {
-      // Perform actions here after successful validation
       setSuccess(true);
       clearCart();
     }
@@ -103,14 +102,24 @@ export default function CheckoutScreen({ navigation }) {
           onRequestClose={() => setSuccess(false)}
         >
           <View className="flex-1 justify-center items-center bg-gray-900 bg-opacity-75">
-            <View className="bg-white p-6 rounded-lg shadow-md">
+            <View className="bg-white p-6 rounded-lg shadow-md relative">
               <Text className="text-2xl font-bold mb-4 text-center">Order Placed!</Text>
               <Text className="text-center mb-4">Your order has been placed successfully.</Text>
-      
-              <Pressable onPress={() => { setSuccess(false); navigation.navigate('Products'); }} className="bg-blue-500 py-3 px-4 rounded">
+
+              <Pressable
+                onPress={() => { setSuccess(false); navigation.navigate('Products'); }}
+                className="bg-blue-500 py-3 px-4 rounded mb-4"
+              >
                 <Text className="text-white text-center text-base">OK</Text>
               </Pressable>
-              <ConfettiCannon count={200} origin={{ x: -10, y: 0 }} />
+              <ConfettiCannon
+                count={200}
+                origin={{ x: 0, y: 0 }}
+                fadeOut={true}
+                autoStart={true}
+                duration={3000}
+                style={{ position: 'absolute', width: '100%', height: '100%' }}
+              />
             </View>
           </View>
         </Modal>
